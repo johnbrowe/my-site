@@ -1,3 +1,4 @@
+var nr = require('newrelic');
 var dotenv = require('dotenv');
 var express = require('express');
 var path = require('path');
