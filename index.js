@@ -8,6 +8,7 @@ var html_dir = './public/';
 // Load enviroment variables
 dotenv.load();
 var env = process.env.ENV;
+var notes_path = process.env.NOTES_PATH;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -25,7 +26,7 @@ app.get('/notes',function(req,res){
         res.sendFile(path.normalize(__dirname + '/test_json/notes.json'))
 
     } else {
-        res.sendFile(path.normalize(__dirname + '/json/notes.json'))
+        res.sendFile(path.normalize(__dirname + '/' + notes_path + '/notes.json'))
     }
 });
 
