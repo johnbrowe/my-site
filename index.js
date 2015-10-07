@@ -1,8 +1,13 @@
+var dotenv = require('dotenv');
 var express = require('express');
 var path = require('path');
 var app  = express();
 var port = 3000;
 var html_dir = './public/';
+
+// Load enviroment variables
+dotenv.load();
+var env = process.env.ENV;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -16,7 +21,12 @@ app.get('/index', function(req, res) {
 });
 
 app.get('/notes',function(req,res){
-    res.sendFile(path.normalize(__dirname + '/json/notes.json'))
+    if(env === "local"){
+        res.sendFile(path.normalize(__dirname + '/test_json/notes.json'))
+
+    } else {
+        res.sendFile(path.normalize(__dirname + '/json/notes.json'))
+    }
 });
 
 app.listen(port);
