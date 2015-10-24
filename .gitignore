@@ -1,5 +1,7 @@
 ### Custom
 .env
+/public/*.js
+/public/*.css
 
 ### Node template
 # Logs

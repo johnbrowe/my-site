@@ -7,8 +7,42 @@
 </head>
 
 <body>
-    <h1>HELLO JOHN</h1>
+
+<div id="task">
+        <h1>Tasks ({{ tasks.length }})</h1>
+
+        <ol>
+            <li v-repeat="task: tasks | notDone">
+                <span v-on="dblclick: editTask(task)">{{ task.body }}</span>
+                <button v-on="click: removeTask(task)">&#10007</button>
+                <button v-on="click: completeTask(task)">&#10004</button>
+            </li>
+        </ol>
+
+        <form v-on="submit: addTask">
+            <div>
+
+                <input v-el="newTask" v-model="newTask" placeholder="I need to...">
+
+                <button>Add Task</button>
+
+            </div>
+        </form>
+
+    <div>
+        <h2>Completed ({{ completions.length }})</h2>
+
+        <ol>
+            <li v-repeat="task: tasks | done">
+                {{ task.body }}
+            </li>
+        </ol>
+
+    </div>
+
+</div>
+
+
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
 <script src="general.js"></script>
 </html>

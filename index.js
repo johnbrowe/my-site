@@ -1,15 +1,19 @@
-var nr = require('newrelic');
+// Load enviroment variables
 var dotenv = require('dotenv');
+dotenv.load();
+var env = process.env.ENV;
+var notes_path = process.env.NOTES_PATH;
+
+if(env === "production"){
+    var nr = require('newrelic');
+}
+
 var express = require('express');
 var path = require('path');
 var app  = express();
 var port = 3000;
 var html_dir = './public/';
 
-// Load enviroment variables
-dotenv.load();
-var env = process.env.ENV;
-var notes_path = process.env.NOTES_PATH;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
