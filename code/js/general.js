@@ -1,78 +1,42 @@
-/**
- * General.js
- * Custom JavScript
- */
-
 new Vue({
-
-    el: '#task',
-
+    el: '#notes',
     data: {
-        tasks: [
-            { body: 'go to store', completed: false }
+        todos: [
+            { text: 'Learn JavaScript' },
+            { text: 'Learn Vue.js' },
+            { text: 'Build Something Awesome' }
         ],
-        newTask: ''
-    },
-
-    computed: {
-      completions: function () {
-          return this.tasks.filter(function (task) {
-              return task.completed
-          });
-      }
-    },
-
-    filters: {
-
-        notDone: function (tasks) {
-            return tasks.filter(function (task) {
-                return !task.completed;
-            });
-        },
-        done: function (tasks) {
-            return tasks.filter(function (task) {
-                return task.completed;
-            });
-        }
+        message: "hello",
+        notes: null
 
     },
+
+    created: function () {
+
+        // Get notes
+        this.fetchData()
+
+    },
+
+    filters: {},
 
     methods: {
 
-        addTask: function (e) {
+        fetchData: function () {
 
-            e.preventDefault();
+            // This for nested functions
+            var self = this;
 
-            this.tasks.push({
-                body: this.newTask,
-                completed: false
+            // Get notes via ajax
+            $.ajax({
+                url: "notes",
+                context: document.body
+            }).done(function (data) {
+
+                // Add json to data
+                self.notes = data;
+                console.log(self.notes);
             });
-
-            this.newTask = '';
-
-        },
-
-        editTask: function (task) {
-
-            this.removeTask(task);
-
-            this.newTask = task.body;
-
-            this.$$.newTask.focus();
-
-        },
-
-        completeTask: function (task) {
-
-            task.completed = true;
-
-
-            console.log(this);
-        },
-
-        removeTask: function (task) {
-
-            this.tasks.$remove(task);
 
         }
 
@@ -80,6 +44,53 @@ new Vue({
 
 });
 
+/**
+ * General.js
+ * Custom JavScript
+ */
+/*
+new Vue({
+
+    el: '#notes',
+
+    data: {
+
+        message: "hello",
+        notes: null
+
+    },
+
+    created: function () {
+
+        // Get notes
+        this.fetchData()
+
+    },
+
+    filters: {},
+
+    methods: {
+        fetchData: function () {
+
+            // This for nested functions
+            var self = this;
+
+            // Get notes via ajax
+            $.ajax({
+                url: "notes",
+                context: document.body
+            }).done(function (data) {
+
+                // Add json to data
+                self.notes = data;
+                console.log(self.notes);
+            });
+
+        }
+    }
+
+});
+*/
 //$.ajax({
 //    url: "notes",
 //    context: document.body

@@ -8,40 +8,15 @@
 
 <body>
 
-<div id="task">
-        <h1>Tasks ({{ tasks.length }})</h1>
+<div id="notes">
 
-        <ol>
-            <li v-repeat="task: tasks | notDone">
-                <span v-on="dblclick: editTask(task)">{{ task.body }}</span>
-                <button v-on="click: removeTask(task)">&#10007</button>
-                <button v-on="click: completeTask(task)">&#10004</button>
-            </li>
-        </ol>
-
-        <form v-on="submit: addTask">
-            <div>
-
-                <input v-el="newTask" v-model="newTask" placeholder="I need to...">
-
-                <button>Add Task</button>
-
-            </div>
-        </form>
-
-    <div>
-        <h2>Completed ({{ completions.length }})</h2>
-
-        <ol>
-            <li v-repeat="task: tasks | done">
-                {{ task.body }}
-            </li>
-        </ol>
-
-    </div>
+    <ul>
+        <li v-for="note in notes">
+            {{{ note | escape }}}
+        </li>
+    </ul>
 
 </div>
-
 
 </body>
 <script src="general.js"></script>
