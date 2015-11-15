@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
+var autoprefixer = require('gulp-autoprefixer');
 
 // Default
 gulp.task('default', ['js', 'sass']);
@@ -29,6 +30,7 @@ gulp.task('sass', function () {
 
     gulp.src('./code/scss/*.scss')
         .pipe(sass.sync().on('error', sass.logError))
+        .pipe(autoprefixer())
         .pipe(gulp.dest('./public/css'));
 
     console.log("Sass compiled");
