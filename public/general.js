@@ -25,7 +25,7 @@ new Vue({
 
         // Get notes
         this.fetchData()
-
+        console.log(this.notes);
     },
 
     filters: {},

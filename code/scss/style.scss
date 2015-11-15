@@ -1,7 +1,34 @@
+@import "libs/normalize";
+
 h1 {
-    color: green;
+    font-size: 16px;
 }
 
-#notes ul {
-    display: flex;
+p {
+  font-size: 16px;
+  word-wrap: break-word;
 }
+
+// Notes list
+#notes ul {
+
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    // Single note
+    li {
+      flex: 0 0 25%;
+      height: 300px;
+      overflow: hidden;
+
+      .text {
+        padding: 10px 30px;
+      }
+
+    }
+
+}
+
