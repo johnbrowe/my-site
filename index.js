@@ -2,9 +2,10 @@
 var dotenv = require('dotenv');
 dotenv.load();
 var env = process.env.ENV;
+var newrelic = process.env.NEWRELIC;
 var notes_path = process.env.NOTES_PATH;
 
-if(env === "production"){
+if(newrelic == true){
     var nr = require('newrelic');
 }
 
@@ -31,6 +32,8 @@ app.get('/notes',function(req,res){
         res.sendFile(path.normalize(__dirname + '/test_json/notes.json'))
 
     } else {
+        console.log(__dirname);
+        console.log(notes_path);
         res.sendFile(path.normalize(__dirname + '/' + notes_path + '/notes.json'))
     }
 });

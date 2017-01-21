@@ -1,27 +1,97 @@
 @import "libs/normalize";
 
-h1 {
-    font-size: 16px;
+body {
+  background: #f5f5f5;
+  font-family: 'Raleway', sans-serif;
 }
 
 p {
-  font-size: 16px;
-  word-wrap: break-word;
+  font-size: 14px;
+  color: #777;
+  overflow-wrap: break-word;
 }
 
-// Notes list
-#notes ul {
+.header {
+  margin: 20px;
+}
 
-    display: flex;
-    flex-wrap: wrap;
+.notes {
+  width: 100%;
+
+  ul {
     list-style: none;
     margin: 0;
     padding: 0;
 
+    // This should be header 2
+    h1 {
+      font-size: 15px;
+      margin: 2rem 0;
+      position: relative;
+
+      &:after {
+        content: "";
+        width: 30px;
+        border-bottom: 2px solid grey;
+        width: 10%;
+        display: block;
+        margin-top: 15px;
+      }
+    }
+
+    li {
+      background: #fff;
+      padding: 5px 20px 20px 20px;
+      margin:  0 20px 20px 20px;
+      border-bottom: 1px solid #eaeaea; 
+    }
+
+  }
+
+  @media (min-width: 768px) {
+
+    ul {
+
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      
+      li {
+        flex: 1 0 25%;
+        height: 300px;
+        overflow: hidden;
+        position: relative;  
+      }
+
+      li::after {
+        content:'';
+        width:100%;
+        height:20%;    
+        position:absolute;
+        left:0;
+        bottom:0;
+        background:linear-gradient(transparent 0, #fff);
+        //background: green;
+      }
+
+    }
+
+  }
+
+}
+
+
+
+
+// Notes list
+/*.notes ul {
+
+    display: flex;
+    flex-wrap: wrap;
+ 
     // Single note
     li {
-      flex: 0 0 25%;
-      height: 300px;
+   
       overflow: hidden;
 
       .text {
@@ -30,5 +100,5 @@ p {
 
     }
 
-}
+}*/
 

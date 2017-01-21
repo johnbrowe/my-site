@@ -11,8 +11,8 @@ new Vue({
     created: function () {
 
         // Get notes
-        this.fetchData()
-        console.log(this.notes);
+        this.ajax()
+        
     },
 
     filters: {},
@@ -22,28 +22,38 @@ new Vue({
         /**
          * Get notes from JSON API
          */
-
-        fetchData: function () {
-
+        ajax: function() {
             // This for nested functions
             var self = this;
 
-            // Get notes via ajax
-            $.ajax({
+            var request = new XMLHttpRequest();
+    
+            request.open('GET', '/notes', true);
 
-                url: "notes",
-                context: document.body
+            request.onload = function() {
+                if (request.status >= 200 && request.status < 400) {            
+    
+                    // Success!
+                    var resp = request.responseText;
+    
+                    // Add json to data
+                    self.notes = JSON.parse(resp);
+                    console.dir(self.notes);
+                        
+                } else {
+                    // We reached our target server, but it returned an error
+                }
+            };
 
-            }).done(function (data) {
+            request.onerror = function(e) {
+                // There was a connection error of some sort
+                console.log(e);
+            };
 
-                // Add json to data
-                self.notes = data;
-                console.log(self.notes);
-
-            });
+            request.send();
 
         }
-
+    
     }
 
 });

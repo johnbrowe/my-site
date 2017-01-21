@@ -1,19 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <title>John Høj Andreassen</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<div id="notes">
-
+<div id="notes" class="notes">
+    
+    <h1 class="header">Notes</h1>  
+    
     <ul>
         <li v-for="note in notes">
             <div class="text">
-            {{{ note }}}
+                {{{ note | json }}}
             </div>
         </li>
     </ul>
