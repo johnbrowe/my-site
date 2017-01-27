@@ -428,21 +428,3 @@ p {
         bottom: 0;
         background: -webkit-linear-gradient(transparent 0, #fff);
         background: linear-gradient(transparent 0, #fff); } }
-
-/*.notes ul {
-
-    display: flex;
-    flex-wrap: wrap;
- 
-    // Single note
-    li {
-   
-      overflow: hidden;
-
-      .text {
-        padding: 10px 30px;
-      }
-
-    }
-
-}*/

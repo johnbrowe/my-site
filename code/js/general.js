@@ -1,11 +1,20 @@
-new Vue({
+Vue.component('note', {
+    template: '<li>A custom component!</li>'
+});
 
-    el: '#notes',
-
-    data: {
-
-        notes: null
-
+Vue.component('notes', {
+    template: '<ul>' +
+        '<li v-for="(note, index) in notes">' +
+            '<div class="text" v-html="note" ></div>' +
+            '<div class="overlay"><a v-bind:href="url + index"> Read more</a></div>' +
+        '</li>' +
+    '</ul>',
+    
+    data: function(){
+        return {
+            notes: null,
+            url: document.URL,
+        }    
     },
 
     created: function () {
@@ -55,5 +64,11 @@ new Vue({
         }
     
     }
+
+});
+
+new Vue({
+
+    el: '#notes',
 
 });
