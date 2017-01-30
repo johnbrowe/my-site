@@ -377,6 +377,9 @@ p {
   color: #777;
   overflow-wrap: break-word; }
 
+.hide {
+  display: none !important; }
+
 .header {
   margin: 20px; }
 

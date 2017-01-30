@@ -1,12 +1,44 @@
+Vue.config.devtools = true;
+
+window.Event = new Vue();
+
+/**
+ * Notes component
+ */
 Vue.component('note', {
-    template: '<li>A custom component!</li>'
+    props: ['display', 'text'],
+    
+    template: '<div v-show="hide" @click="closeNote()"><p v-html="text"></p></div>',
+
+    data: function(){
+        return {
+            hide: this.display
+        }        
+    },
+
+    methods: {
+
+        closeNote: function(){
+            Event.$emit('close', { note: "" });
+        }
+
+    }
+
+
 });
 
+
+/**
+ * Notes component
+ */
 Vue.component('notes', {
-    template: '<ul>' +
-        '<li v-for="(note, index) in notes">' +
+
+    props: ['display'],
+
+    template: 
+    '<ul v-show="display">' +
+        '<li v-for="(note, index) in notes" @click="openNote(note)">' +
             '<div class="text" v-html="note" ></div>' +
-            '<div class="overlay"><a v-bind:href="url + index"> Read more</a></div>' +
         '</li>' +
     '</ul>',
     
@@ -14,6 +46,7 @@ Vue.component('notes', {
         return {
             notes: null,
             url: document.URL,
+            display: this.display
         }    
     },
 
@@ -24,7 +57,6 @@ Vue.component('notes', {
         
     },
 
-    filters: {},
 
     methods: {
 
@@ -61,14 +93,42 @@ Vue.component('notes', {
 
             request.send();
 
+        },
+
+        openNote: function(note){
+            Event.$emit('applied', { note: note });
         }
     
     }
 
 });
 
+
+/**
+ * Vue Instance
+ */
 new Vue({
 
     el: '#notes',
+
+    data: {
+        showNotes: true,
+        note: ""
+    },
+
+    created: function(){
+
+        var that = this;
+
+        Event.$on('applied', function(obj){
+            that.showNotes = false;
+            that.note = obj.note;
+        });
+
+        Event.$on('close', function(obj){
+            that.showNotes = true;
+            that.note = obj.note;
+        });
+    }
 
 });
