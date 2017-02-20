@@ -2,28 +2,39 @@ Vue.config.devtools = true;
 
 window.Event = new Vue();
 
+var store = {
+    showModal: false,
+    note: null
+}
+
 /**
  * Notes component
  */
 Vue.component('note', {
-    props: ['display', 'text'],
-    
-    template: '<div v-show="hide" @click="closeNote()"><p v-html="text"></p></div>',
 
+    props: ['text'],
+    
+    template: '<div class="modal" :class="{ active: store.showModal }">' +
+                '<div v-if="store.note" class="modal__box">' +
+                    '<a @click="closeModal" title="Close" class="close">X</a>' +
+                    '<div v-html="store.note"></div>' +
+                '</div>' +
+              '</div>',
+    
     data: function(){
         return {
-            hide: this.display
+            store: store
         }        
     },
 
     methods: {
 
-        closeNote: function(){
-            Event.$emit('close', { note: "" });
+        closeModal: function(){
+            this.store.showModal = false;
+            this.store.note = null;
         }
 
     }
-
 
 });
 
@@ -33,11 +44,9 @@ Vue.component('note', {
  */
 Vue.component('notes', {
 
-    props: ['display'],
-
     template: 
-    '<ul v-show="display">' +
-        '<li v-for="(note, index) in notes" @click="openNote(note)">' +
+    '<ul>' +
+        '<li v-for="(note, index) in notes" @click="openModal(note)">' +
             '<div class="text" v-html="note" ></div>' +
         '</li>' +
     '</ul>',
@@ -46,7 +55,7 @@ Vue.component('notes', {
         return {
             notes: null,
             url: document.URL,
-            display: this.display
+            store: store
         }    
     },
 
@@ -95,8 +104,10 @@ Vue.component('notes', {
 
         },
 
-        openNote: function(note){
-            Event.$emit('applied', { note: note });
+        openModal: function(note){
+            console.log(note);
+            this.store.note = note;
+            this.store.showModal = true;
         }
     
     }
@@ -112,23 +123,6 @@ new Vue({
     el: '#notes',
 
     data: {
-        showNotes: true,
         note: ""
-    },
-
-    created: function(){
-
-        var that = this;
-
-        Event.$on('applied', function(obj){
-            that.showNotes = false;
-            that.note = obj.note;
-        });
-
-        Event.$on('close', function(obj){
-            that.showNotes = true;
-            that.note = obj.note;
-        });
     }
-
 });

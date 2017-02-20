@@ -30,7 +30,6 @@ app.get('/index', function(req, res) {
 app.get('/notes',function(req,res){
     if(env === "local"){
         res.sendFile(path.normalize(__dirname + '/test_json/notes.json'))
-
     } else {
         console.log(__dirname);
         console.log(notes_path);
