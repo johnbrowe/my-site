@@ -8,7 +8,7 @@ gulp.task('default', ['js', 'sass']);
 
 // Watch
 gulp.task('watch', function () {
-    gulp.watch(['./code/js/*.js', './code/scss/*.scss'], ['default']);
+    gulp.watch(['./code/js/**/**.js', './code/scss/**/**.scss'], ['default']);
 });
 
 // Javacript

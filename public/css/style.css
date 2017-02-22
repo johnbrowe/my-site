@@ -377,29 +377,6 @@ p {
   color: #777;
   overflow-wrap: break-word; }
 
-pre {
-  font-family: "Courier 10 Pitch", Courier, monospace;
-  font-size: 14px;
-  line-height: 1;
-  white-space: pre;
-  white-space: pre-wrap;
-  white-space: -moz-pre-wrap;
-  white-space: -o-pre-wrap;
-  background: #faf8f0;
-  padding: 10px; }
-
-code {
-  font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
-  font-size: 14px;
-  line-height: 1;
-  white-space: pre;
-  white-space: pre-wrap;
-  white-space: -moz-pre-wrap;
-  white-space: -o-pre-wrap; }
-
-.hide {
-  display: none !important; }
-
 .header {
   margin: 20px; }
 
@@ -424,7 +401,8 @@ code {
       background: #fff;
       padding: 5px 20px 20px 20px;
       margin: 0 20px 20px 20px;
-      border-bottom: 1px solid #eaeaea; }
+      border-bottom: 1px solid #eaeaea;
+      cursor: pointer; }
   @media (min-width: 768px) {
     .notes ul {
       display: -webkit-box;
@@ -452,6 +430,26 @@ code {
         background: -webkit-linear-gradient(transparent 0, #fff);
         background: linear-gradient(transparent 0, #fff); } }
 
+pre {
+  font-family: "Courier 10 Pitch", Courier, monospace;
+  font-size: 14px;
+  line-height: 1;
+  white-space: pre;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  background: #faf8f0;
+  padding: 10px; }
+
+code {
+  font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+  font-size: 14px;
+  line-height: 1;
+  white-space: pre;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap; }
+
 .modal {
   position: fixed;
   font-family: Arial, Helvetica, sans-serif;
@@ -464,7 +462,9 @@ code {
   opacity: 0;
   -webkit-transition: opacity 400ms ease-in;
   transition: opacity 400ms ease-in;
-  pointer-events: none; }
+  pointer-events: none;
+  max-height: 100%;
+  overflow-y: auto; }
   .modal.active {
     opacity: 1;
     pointer-events: auto; }
@@ -479,13 +479,14 @@ code {
     width: 24px;
     text-decoration: none;
     font-weight: bold;
-    border-radius: 12px; }
+    border-radius: 12px;
+    cursor: pointer; }
   .modal .close:hover {
     background: #00d9ff; }
 
 .modal__box {
-  width: 400px;
+  width: 80%;
   position: relative;
   margin: 10% auto;
-  padding: 5px 20px 13px 20px;
+  padding: 20px 40px 40px 40px;
   background: #fff; }
