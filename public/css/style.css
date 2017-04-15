@@ -368,6 +368,10 @@ td,
 th {
   padding: 0; }
 
+h3 {
+  margin: 0;
+  line-height: 0; }
+
 body {
   background: #f5f5f5;
   font-family: 'Raleway', sans-serif; }
@@ -382,29 +386,29 @@ p {
 
 .notes {
   width: 100%; }
-  .notes ul {
+  .notes .notes__list {
     list-style: none;
     margin: 0;
     padding: 0; }
-    .notes ul h1 {
+    .notes .notes__list h1 {
       font-size: 15px;
       margin: 2rem 0;
       position: relative; }
-      .notes ul h1:after {
+      .notes .notes__list h1:after {
         content: "";
         width: 30px;
         border-bottom: 2px solid grey;
         width: 10%;
         display: block;
         margin-top: 15px; }
-    .notes ul li {
+    .notes .notes__list .notes__list__items {
       background: #fff;
       padding: 5px 20px 20px 20px;
       margin: 0 20px 20px 20px;
       border-bottom: 1px solid #eaeaea;
       cursor: pointer; }
   @media (min-width: 768px) {
-    .notes ul {
+    .notes .notes__list {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -413,14 +417,14 @@ p {
       -webkit-box-pack: center;
           -ms-flex-pack: center;
               justify-content: center; }
-      .notes ul li {
+      .notes .notes__list .notes__list__items {
         -webkit-box-flex: 1;
             -ms-flex: 1 0 25%;
                 flex: 1 0 25%;
         height: 300px;
         overflow: hidden;
         position: relative; }
-      .notes ul li::after {
+      .notes .notes__list .notes__list__items::after {
         content: '';
         width: 100%;
         height: 20%;

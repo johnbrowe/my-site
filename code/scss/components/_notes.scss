@@ -2,7 +2,7 @@
 .notes {
   width: 100%;
 
-  ul {
+  .notes__list {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -23,7 +23,7 @@
       }
     }
 
-    li {
+    .notes__list__items {
       background: #fff;
       padding: 5px 20px 20px 20px;
       margin:  0 20px 20px 20px;
@@ -35,20 +35,20 @@
 
   @media (min-width: 768px) {
 
-    ul {
+    .notes__list {
 
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       
-      li {
+      .notes__list__items {
         flex: 1 0 25%;
         height: 300px;
         overflow: hidden;
         position: relative;  
       }
 
-      li::after {
+      .notes__list__items::after {
         content:'';
         width:100%;
         height:20%;    
